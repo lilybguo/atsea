@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import './styles.css'
 import '../globalStyles.css'
 
-const Title = ({ products, total, totalProducts }) => (
+const Title = ({ totalProducts }) => (
     <div className='globalContainer'>
         <div className='titleBar'>
             <div className='productsSection'>
@@ -14,24 +14,28 @@ const Title = ({ products, total, totalProducts }) => (
             </div>
              <div className="checkout-button">
                 <FlatButton
+                    style={{
+                        color: '#fff',
+                        backgroundColor: "#099CEC",
+                    }}
+                    labelStyle={{
+                        textTransform: 'none',
+                        fontFamily: 'Open Sans',
+                        fontWeight: 600,
+                    }}
                     label="Checkout"
                     containerElement={<Link to="checkout"> Checkout </Link>}
                 />
             </div>
             <Cart
-                products={products}
-                total={total}
-                totalProducts={totalProducts}   
+                total={totalProducts}   
             />
         </div>
     </div>
 )
 
-// Title.propTypes = {
-//     products: PropTypes.array,
-//     total: PropTypes.string,
-//     totalProducts: PropTypes.string,
-// }
-
+Title.propTypes = {
+    totalProducts: PropTypes.string,
+}
 
 export default Title

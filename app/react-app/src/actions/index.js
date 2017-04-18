@@ -1,16 +1,10 @@
 const request = require('superagent-promise')(require('superagent'), Promise)
-import getJwtToken from './getJwtToken'
+import { getJwtToken } from './storage'
 import shop from '../api/shop'
 import * as types from '../constants/ActionTypes'
 
-const receiveProducts = products => ({
-  type: types.RECEIVE_PRODUCTS,
-  products: products
-})
-
-const BASE_URL = '/atsea'
-const API = `${BASE_URL}/api`
-const UTILITY = `${BASE_URL}/utility`
+const API = '/api'
+const UTILITY = '/utility'
 
 export const createOrder = (values) => (dispatch) => {
   const url = `${API}/order/`
@@ -51,7 +45,7 @@ export const purchaseOrder = () => (dispatch) => {
     payload: {
       promise:
         request
-          .get(`${BASE_URL}/purchase/`)
+          .get('/purchase/')
           .set('Authorization', 'Bearer ' + token)
           .accept('application/json')
           .end()
@@ -115,6 +109,7 @@ export const createCustomer = (username, password) => (dispatch) => {
 
 
 export const getCustomer = (username, password) => (dispatch) => {
+  //TODO: update actions 
  let dispatchObj = {
     type: types.LOGIN_CUSTOMER,
     payload: {
@@ -135,7 +130,7 @@ export const loginCustomer = (username, password) => (dispatch) => {
     payload: {
       promise:
         request
-          .post(`${BASE_URL}/login/`)
+          .post('/login/')
           .set('Content-Type', 'application/json')
           .accept('application/json')
           .send(
@@ -175,10 +170,23 @@ export const logoutCustomer = () => (dispatch) => {
   })
 }
 
+export const addUser = (username) => (dispatch) => {
+  dispatch({
+    type: types.ADD_USER,
+    username
+  })
+}
 
-export const getAllProducts = () => dispatch => {
+
+// DUMMY ITEMS
+const fetchDummyItems = products => ({
+  type: types.DUMMY_ITEMS_REQUEST,
+  products: products
+})
+
+export const fetchAllDummyItems = () => dispatch => {
   shop.getProducts(products => {
-    dispatch(receiveProducts(products))
+    dispatch(fetchDummyItems(products))
   })
 }
 

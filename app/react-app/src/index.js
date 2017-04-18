@@ -8,9 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
 import reducer from './reducers'
 import {
-  getAllProducts,
-  fetchAllItems,
-  fetchContainerId,
+  fetchAllDummyItems,
 } from './actions'
 import App from './containers/App'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -40,9 +38,7 @@ const muiTheme = getMuiTheme({
   },
 })
 
-store.dispatch(getAllProducts())
-store.dispatch(fetchAllItems())
-store.dispatch(fetchContainerId())
+store.dispatch(fetchAllDummyItems())
 
 render(
   <Provider store={store}>

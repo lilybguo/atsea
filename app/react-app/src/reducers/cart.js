@@ -2,7 +2,8 @@ import {
   ADD_TO_CART,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE,
-  CREATE_ORDER
+  CREATE_ORDER,
+  PURCHASE,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -44,7 +45,11 @@ const cart = (state = initialState, action) => {
     case `${CREATE_ORDER}_ACK`:
       return initialState
     case `${CREATE_ORDER}_ERR`:
-      return action.cart
+      return state
+    case `${PURCHASE}_ACK`:
+      return initialState
+    case `${PURCHASE}_ERR`:
+      return state
     case CHECKOUT_REQUEST:
       return initialState
     case CHECKOUT_FAILURE:

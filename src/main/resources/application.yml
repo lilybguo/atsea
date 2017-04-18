@@ -1,7 +1,7 @@
 ---
 server:
   port: 8080
-  contextPath: /atsea
+  contextPath: /
 ---
 spring:
   profiles: local, default
@@ -27,7 +27,15 @@ datasource:
     username: gordonuser
     driverClassName: org.postgresql.Driver
     defaultSchema:
-    maxPoolSize: 20
+    maxConnections: 300
+    initialConnections: 20
+    maxAge: 30000
+    testOnBorrow: true
+    testWhileIdle:  true
+    timeBetweenEvictionRunsMillis: 60000
+    validationQuery: SELECT 1
+    minPoolSize: 6
+    maxPoolSize: 15
     hibernate:
       hbm2ddl.method: update
       show_sql: true

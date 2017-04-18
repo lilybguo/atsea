@@ -37,6 +37,7 @@
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
+      <version>2.5.1</version>
     </dependency>
     <!-- Add H2 database support [for running with local profile] -->
     <dependency>
@@ -48,6 +49,12 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
     </dependency>
+    <!-- Pooling connection -->
+    <dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-c3p0</artifactId>
+		<version>5.2.10.Final</version>
+	</dependency>
     <!-- Add MySQL database support -->
 	<dependency>
 		<groupId>mysql</groupId>

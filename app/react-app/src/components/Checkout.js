@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Product from './Product'
 import CustomerInfoForm from './CustomerInfoForm'
-import FlatButton from 'material-ui/FlatButton'
 import './Checkout.css'
 
 class Checkout extends Component {
@@ -28,7 +27,7 @@ class Checkout extends Component {
       )
     ) : (
       //TODO: Ask Josh for formatting
-      <em>Please add some products to the cart.</em>
+      <span className='emptyMessage'>Please add some products to the cart.</span>
     )
     return (
         <div className='productSection'>
@@ -67,26 +66,6 @@ class Checkout extends Component {
     );
   }
 
-  
-  //TODO: ask Josh if it's ok that this is within the form div
-  // OR search around for solution.
-  renderCheckout() {
-    const { products, onCheckoutClicked } = this.props;
-    const hasProducts = products.length > 0;
-    return (
-      <div>
-        <FlatButton onClick={onCheckoutClicked}
-          disabled={hasProducts ? '' : 'disabled'}
-          label={`Continue Shopping`}
-        />
-        <FlatButton onClick={onCheckoutClicked}
-          disabled={hasProducts ? '' : 'disabled'}
-          label={`Complete Order`}
-        />
-      </div>
-    );
-  }
-
   render() {
     return (
       <div>
@@ -104,9 +83,6 @@ class Checkout extends Component {
             {this.renderCartTotal()}
           </div>
         </div>
-        <div className='buttonRow'>
-          {/*{this.renderCheckout()}*/}
-        </div>
       </div>
     )
   }
@@ -121,7 +97,6 @@ Checkout.propTypes = {
     image: PropTypes.string.isRequired
   })).isRequired,
   total: PropTypes.string,
-  onCheckoutClicked: PropTypes.func,
   handleSubmit: PropTypes.func,
 }
 
